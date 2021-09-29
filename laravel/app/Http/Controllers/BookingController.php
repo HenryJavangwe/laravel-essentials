@@ -88,7 +88,17 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        //
+        // get the list of users to find the user who booked 
+        $users =  DB::table('users')->get() ->pluck('name','id')->prepend('none');
+        // get the list of rooms
+        $rooms =  DB::table('rooms')->get()->pluck('number','id');
+        $bookingsUser = DB::table('bookings_users')->where('booking_id', $booking->id)->first();
+        return view('bookings.edit')
+            //passing data we want in the view
+            ->with('users', $users)
+            ->with('rooms', $rooms)
+            ->with('bookingsUser', $bookingsUser)
+            ->with('booking', $booking); 
     }
 
     /**
