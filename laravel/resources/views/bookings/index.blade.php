@@ -46,6 +46,13 @@
                         title="Edit">
                       Edit
                     </a>
+                    <form action="{{ route('bookings.destroy', ['booking' => $booking->id]) }}" method="POST">
+                        @csrf <!-- cross site request forgery : prevent sites from running cross site requests-->
+                        @method('delete')
+                        <button type="submit" class="btn btn-link" title="Delete" value="DELETE">
+                            delete
+                        </button>
+                    </form>
                 </td>
             </tr>
         @empty
