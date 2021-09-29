@@ -35,13 +35,13 @@
                 <td>{{ date('F d, Y', strtotime($booking->created_at)) }}</td>
                 <td class="actions">
                     <a
-                        href="{{ route('bookings.index', ['booking' => $booking->id]) }}"
+                        href="{{ route('bookings.show', ['booking' => $booking->id]) }}"
                         alt="View"
                         title="View">
                       View
                     </a>
                     <a
-                        href="{{ route('bookings.index', ['booking' => $booking->id]) }}"
+                        href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
                         alt="Edit"
                         title="Edit">
                       Edit

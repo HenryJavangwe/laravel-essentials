@@ -74,7 +74,7 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        dd($booking);
     }
 
     /**
