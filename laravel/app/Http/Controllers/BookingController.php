@@ -17,7 +17,7 @@ class BookingController extends Controller
     {
         // verify if route are matching/working. this will access db, dump data and die.
         // \DB::table('bookings')->get()->dd();
-        $bookings = DB::table('bookings')->get();
+        $bookings = booking::paginate(5);
         return view('bookings.index')
             ->with('bookings', $bookings);
     }
@@ -30,12 +30,13 @@ class BookingController extends Controller
     public function create()
     {
         // get the list of users to find the user who booked 
-        $users =  DB::table('users')->get() ->pluck('name','id')->prepend('none');
+        $users =  DB::table('users')->get() ->pluck('name','id');
         // get the list of rooms
         $rooms =  DB::table('rooms')->get()->pluck('number','id');
 
         return view('bookings.create')
             ->with('users', $users)
+            ->with('booking', (new Booking()))
             ->with('rooms', $rooms); //passing data we want in the view
     }
 
