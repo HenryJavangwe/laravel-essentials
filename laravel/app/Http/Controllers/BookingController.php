@@ -17,6 +17,7 @@ class BookingController extends Controller
     {
         // verify if route are matching/working. this will access db, dump data and die.
         // \DB::table('bookings')->get()->dd();
+        // Booking::withTrashed()->get()->dd(); --> this will allows us to dump the data and we'll be able to see which data was deleted but not actually deleted.
         $bookings = booking::paginate(5);
         return view('bookings.index')
             ->with('bookings', $bookings);
