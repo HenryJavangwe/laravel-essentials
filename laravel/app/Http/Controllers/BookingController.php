@@ -49,16 +49,17 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $id =  DB::table('bookings')->insertGetId([
-            'room_id'=> $request ->input('room_id'),
-            'start'=> $request ->input('start'),
-            'end'=> $request ->input('end'),
-            'is_reservation'=> $request ->input('is_reservation', false),
-            'is_paid'=> $request ->input('is_paid', false),
-            'notes'=> $request ->input('notes'),
-        ]);
+        // $id =  DB::table('bookings')->insertGetId([
+        //     'room_id'=> $request ->input('room_id'),
+        //     'start'=> $request ->input('start'),
+        //     'end'=> $request ->input('end'),
+        //     'is_reservation'=> $request ->input('is_reservation', false),
+        //     'is_paid'=> $request ->input('is_paid', false),
+        //     'notes'=> $request ->input('notes'),
+        // ]);
+        $booking = Booking::create($request->input()); //this says to create a new insance of the booking model with the values filled in from the request input values return and save that instance as the booking var. 
         DB::table('bookings_users')->insert([
-            'booking_id'=> $id,
+            'booking_id'=> $booking -> id,
             'user_id'=> $request ->input('user_id'),
         ]);
         // return redirect() ->action(BookingController::class)
