@@ -27,7 +27,7 @@ Route::get('/test', function(){
     return "Second Route test";
 });
 
-Route::get('/rooms', [\App\Http\Controllers\ShowRoomsController::class, '__invoke']);
+Route::get('/rooms/{roomType?}', [\App\Http\Controllers\ShowRoomsController::class, '__invoke']); //this means we have a route rooms which points to the showrooms controller and it has an optional roomtype params indicated by the ?
 
 // Route::get('/bookings', [\App\Http\Controllers\BookingController@index::class, '__invoke']);
 
