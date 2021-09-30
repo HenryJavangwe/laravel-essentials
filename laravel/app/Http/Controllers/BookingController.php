@@ -113,16 +113,18 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
          //dd($request->all());
-         DB::table('bookings')
-         ->where('id', $booking->id)
-         ->update([
-            'room_id'=> $request ->input('room_id'),
-            'start'=> $request ->input('start'),
-            'end'=> $request ->input('end'),
-            'is_reservation'=> $request ->input('is_reservation', false),
-            'is_paid'=> $request ->input('is_paid', false),
-            'notes'=> $request ->input('notes'),
-        ]);
+        //  DB::table('bookings')
+        //  ->where('id', $booking->id)
+        //  ->update([
+        //     'room_id'=> $request ->input('room_id'),
+        //     'start'=> $request ->input('start'),
+        //     'end'=> $request ->input('end'),
+        //     'is_reservation'=> $request ->input('is_reservation', false),
+        //     'is_paid'=> $request ->input('is_paid', false),
+        //     'notes'=> $request ->input('notes'),
+        // ]);
+        $booking->fill($request->input());// this fills our model and populates it with data from the form
+        $booking->save();
         DB::table('bookings_users')
         ->where('booking_id', $booking->id)
         ->update([
